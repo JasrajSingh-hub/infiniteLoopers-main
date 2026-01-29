@@ -121,6 +121,38 @@ app.get('/api/patients/:id', (req, res) => {
     else res.status(404).json({ error: 'Patient not found' });
 });
 
+// POST /api/patients - Add New Patient
+app.post('/api/patients', (req, res) => {
+    const { name, age, gender, room, diagnosis, vitals } = req.body;
+
+    if (!name || !age || !room) {
+        return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    const newId = `P-${1000 + patients.length + 1}`;
+    
+    // Default vitals if not provided
+    const initialVitals = vitals || { bp: "120/80", hr: 72, temp: 98.6, spo2: 98 };
+    const riskAnalysis = calculateRisk(initialVitals, age);
+
+    const newPatient = {
+        id: newId,
+        name,
+        age: parseInt(age),
+        gender: gender || 'Unknown',
+        room,
+        status: riskAnalysis.status,
+        condition: diagnosis || 'Under Observation',
+        admissionDate: new Date().toISOString().split('T')[0],
+        vitals: initialVitals,
+        riskScore: riskAnalysis.score,
+        history: []
+    };
+
+    patients.push(newPatient);
+    res.json({ success: true, patient: newPatient });
+});
+
 // POST /api/vitals - Submit Vitals & Recalculate Risk
 app.post('/api/vitals', (req, res) => {
     const { patientId, bp, hr, temp, spo2 } = req.body;
