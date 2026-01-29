@@ -1,90 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Nurse Dashboard</title>
+    <title>Dashboard - Nurse AI Monitor</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body class="main-layout">
-    
+
     <!-- Navbar -->
     <header class="app-header">
         <div class="container nav-container">
             <div class="brand">
-                <span class="brand-icon">✚</span> MedCore
+                <span class="brand-icon">✚</span> MedCore AI
             </div>
+
             <nav class="nav-links">
-                <a href="dashboard.html" class="nav-link active">Patients</a>
-                <a href="vitals.html" class="nav-link">Vitals Entry</a>
+                <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                <a href="vitals.html" class="nav-link">Patient Monitor</a>
+                <a href="#" class="nav-link">Staff</a>
             </nav>
+
             <div class="user-profile">
                 <div class="avatar">NS</div>
-                <div class="hidden-mobile">
-                    <p class="text-sm font-medium mb-0" style="margin-bottom: 0;">Nurse Sarah</p>
+                <div>
+                    <p class="text-sm font-bold mb-0" style="margin:0; color:var(--text-primary);">Nurse Sarah</p>
+                    <p class="text-xs text-muted" style="margin:0;">Cardiology</p>
                 </div>
-                <a href="#" id="logoutBtn" class="text-secondary text-sm" style="margin-left: 1rem;">Logout</a>
+                <a href="#" id="logoutBtn" style="margin-left: 1rem; color: var(--text-tertiary);">⏻</a>
             </div>
         </div>
     </header>
 
     <main class="container" id="dashboard-container" style="padding-top: 2rem; padding-bottom: 2rem; flex: 1;">
-        
-        <div class="flex justify-between items-center mb-4">
-            <h1>Patient Overview</h1>
+
+        <div class="header-row">
+            <div>
+                <h1>Hospital AI Dashboard</h1>
+                <p>Real-time patient monitoring & prioritization</p>
+            </div>
             <div class="flex gap-2">
-                <a href="add_patient.html" class="btn btn-outline" style="background-color: var(--surface-color);">
-                    <span>+</span> Add Patient
-                </a>
-                <a href="vitals.html" class="btn btn-primary">
-                    <span>+</span> Log Vitals
+                <a href="add_patient.html" class="btn btn-primary">
+                    <span>+</span> Admit Patient
                 </a>
             </div>
         </div>
 
-        <!-- Stats Row -->
+        <!-- 3-Column Stats Grid -->
         <div class="stats-grid">
+            <!-- Critical Alerts -->
             <div class="card stat-card">
-                <div class="stat-icon blue">👥</div>
                 <div>
-                    <p class="text-sm text-muted mb-0" style="margin-bottom: 0;">Total Patients</p>
-                    <h3 id="stat-total" style="font-size: 1.5rem; margin-bottom: 0;">--</h3>
+                    <div class="stat-icon" style="background:#fee2e2; color:#ef4444;">⚠</div>
+                    <div class="stat-value text-danger" id="stat-critical">--</div>
+                    <p class="text-sm text-muted">Critical Alerts</p>
                 </div>
             </div>
+
+            <!-- Active Patients -->
             <div class="card stat-card">
-                <div class="stat-icon red">⚠️</div>
                 <div>
-                    <p class="text-sm text-muted mb-0" style="margin-bottom: 0;">Critical Attention</p>
-                    <h3 id="stat-critical" style="font-size: 1.5rem; margin-bottom: 0; color: var(--danger-color);">--</h3>
+                    <div class="stat-icon" style="background:#eff6ff; color:#3b82f6;">👥</div>
+                    <div class="stat-value" id="stat-active">--</div>
+                    <p class="text-sm text-muted">Active Patients</p>
                 </div>
             </div>
+
+            <!-- Staff On Duty -->
             <div class="card stat-card">
-                <div class="stat-icon green">✓</div>
                 <div>
-                    <p class="text-sm text-muted mb-0" style="margin-bottom: 0;">Stable Condition</p>
-                    <h3 id="stat-stable" style="font-size: 1.5rem; margin-bottom: 0;">--</h3>
+                    <div class="stat-icon" style="background:#f3f4f6; color:#6b7280;">🩺</div>
+                    <div class="stat-value">8</div>
+                    <p class="text-sm text-muted">Staff on Duty</p>
                 </div>
             </div>
         </div>
 
-        <!-- Filter/Search Bar (Visual Only for now) -->
-        <div class="card mb-4" style="padding: 1rem; display: flex; gap: 1rem;">
-            <input type="text" class="form-input" placeholder="Search patients..." style="max-width: 300px;">
-            <select class="form-select" style="max-width: 200px;">
-                <option>All Wards</option>
-                <option>ICU</option>
-                <option>General Ward</option>
-            </select>
+        <!-- Search & Filters -->
+        <div class="search-row">
+            <div class="search-bar">
+                <input type="text" class="form-input" placeholder="Search name, room, or ID..."
+                    style="background-image: url('data:image/svg+xml;utf8,<svg ...>');">
+            </div>
+            <div class="filter-chips">
+                <div class="chip active">All Patients</div>
+                <div class="chip">ICU</div>
+                <div class="chip">Watch</div>
+                <div class="chip">Stable</div>
+            </div>
         </div>
 
-        <!-- Patient Grid -->
-        <div id="patient-grid" class="patient-grid">
+        <h3 class="mb-4">Patient Monitoring</h3>
+
+        <!-- Patient List Container -->
+        <div id="patient-grid" class="patient-list">
             <!-- Populated by JS -->
         </div>
 
     </main>
 
-    <script src="js/data.js"></script>
     <script src="js/app.js"></script>
 </body>
+
 </html>
