@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Details - Nurse Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="main-layout">
+    
+    <!-- Navbar -->
+    <header class="app-header">
+        <div class="container nav-container">
+            <div class="brand">
+                <span class="brand-icon">✚</span> MedCore
+            </div>
+            <nav class="nav-links">
+                <a href="dashboard.html" class="nav-link">Patients</a>
+                <a href="vitals.html" class="nav-link">Vitals Entry</a>
+            </nav>
+            <div class="user-profile">
+                <div class="avatar">NS</div>
+                <a href="#" id="logoutBtn" class="text-secondary text-sm" style="margin-left: 1rem;">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" id="patient-detail-container" style="padding-top: 2rem; padding-bottom: 2rem; flex: 1;">
+        
+        <a href="dashboard.html" class="btn btn-outline mb-4" style="display: inline-flex; gap: 0.5rem; padding: 0.5rem 1rem;">
+            ← Back to Dashboard
+        </a>
+
+        <div class="card mb-4">
+            <div class="patient-card-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1rem;">
+                <div>
+                    <h1 id="p-name" style="margin-bottom: 0;">--</h1>
+                    <p class="text-muted" id="p-id">--</p>
+                </div>
+                <div class="text-right" style="text-align: right;">
+                    <span id="p-status" class="patient-status">--</span>
+                    <div class="mt-2 text-sm text-muted">Room <span id="p-room" class="font-medium text-primary">--</span></div>
+                </div>
+            </div>
+
+            <div class="flex" style="gap: 3rem; flex-wrap: wrap;">
+                <div>
+                    <label class="text-muted text-sm">Age</label>
+                    <p class="font-medium" id="p-age" style="margin-bottom: 0; color: var(--text-primary);">--</p>
+                </div>
+                <div>
+                    <label class="text-muted text-sm">Gender</label>
+                    <p class="font-medium" id="p-gender" style="margin-bottom: 0; color: var(--text-primary);">--</p>
+                </div>
+                <div>
+                    <label class="text-muted text-sm">Admission Date</label>
+                    <p class="font-medium" id="p-admitted" style="margin-bottom: 0; color: var(--text-primary);">--</p>
+                </div>
+                <div>
+                    <label class="text-muted text-sm">Diagnosis</label>
+                    <p class="font-medium" id="p-diagnosis" style="margin-bottom: 0; color: var(--text-primary);">--</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+            <div class="card" style="text-align: center;">
+                <p class="text-sm text-muted">Blood Pressure</p>
+                <h2 id="v-bp" style="color: var(--primary-color);">--</h2>
+                <span class="text-xs text-secondary">mmHg</span>
+            </div>
+            <div class="card" style="text-align: center;">
+                <p class="text-sm text-muted">Heart Rate</p>
+                <h2 id="v-hr" style="color: var(--danger-color);">--</h2>
+                <span class="text-xs text-secondary">bpm</span>
+            </div>
+            <div class="card" style="text-align: center;">
+                <p class="text-sm text-muted">Temperature</p>
+                <h2 id="v-temp" style="color: var(--warning-color);">--</h2>
+                <span class="text-xs text-secondary">°F</span>
+            </div>
+            <div class="card" style="text-align: center;">
+                <p class="text-sm text-muted">SpO2</p>
+                <h2 id="v-spo2" style="color: var(--info-color);">--</h2>
+                <span class="text-xs text-secondary">%</span>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <h3 class="mb-4">Systolic BP History</h3>
+            <div id="bp-history-chart" class="chart-container">
+                <!-- Chart rendered by JS -->
+            </div>
+        </div>
+
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

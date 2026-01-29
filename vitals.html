@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Vitals - Nurse Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="main-layout">
+    
+    <!-- Navbar -->
+    <header class="app-header">
+        <div class="container nav-container">
+            <div class="brand">
+                <span class="brand-icon">✚</span> MedCore
+            </div>
+            <nav class="nav-links">
+                <a href="dashboard.html" class="nav-link">Patients</a>
+                <a href="vitals.html" class="nav-link active">Vitals Entry</a>
+            </nav>
+            <div class="user-profile">
+                <div class="avatar">NS</div>
+                <a href="#" id="logoutBtn" class="text-secondary text-sm" style="margin-left: 1rem;">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 2rem; padding-bottom: 2rem; max-width: 600px; margin: 0 auto; flex: 1;">
+        
+        <div class="mb-4">
+            <h1>Log Vitals</h1>
+            <p>Enter current vitals for patient records</p>
+        </div>
+
+        <div class="card">
+            <form id="vitals-form">
+                <div class="form-group">
+                    <label for="patient-select" class="form-label">Select Patient</label>
+                    <select id="patient-select" class="form-select" required>
+                        <option value="" disabled selected>-- Choose Patient --</option>
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+
+                <div class="vitals-row" style="grid-template-columns: 1fr 1fr; border-top: none; padding-top: 0; margin-top: 0; gap: 1.5rem;">
+                    <div class="form-group">
+                        <label for="bp" class="form-label">Blood Pressure (mmHg)</label>
+                        <input type="text" id="bp" class="form-input" placeholder="e.g. 120/80" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hr" class="form-label">Heart Rate (bpm)</label>
+                        <input type="number" id="hr" class="form-input" placeholder="e.g. 72" required>
+                    </div>
+                </div>
+
+                <div class="vitals-row" style="grid-template-columns: 1fr 1fr; border-top: none; padding-top: 0; margin-top: 0; gap: 1.5rem;">
+                    <div class="form-group">
+                        <label for="temp" class="form-label">Temperature (°F)</label>
+                        <input type="text" id="temp" class="form-input" placeholder="e.g. 98.6" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="spo2" class="form-label">SpO2 (%)</label>
+                        <input type="number" id="spo2" class="form-input" placeholder="e.g. 98" max="100" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes" class="form-label">Notes</label>
+                    <textarea id="notes" class="form-input" rows="3" placeholder="Optional observations..."></textarea>
+                </div>
+
+                <div class="flex gap-2 justify-between mt-4">
+                    <a href="dashboard.html" class="btn btn-outline">Cancel</a>
+                    <button type="submit" class="btn btn-primary" style="min-width: 150px;">Save Vitals</button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
